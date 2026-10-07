@@ -1,0 +1,5 @@
+* text=auto
+*.ps1 text eol=crlf
+*.aspx text eol=crlf
+*.config text eol=crlf
+*.html text eol=crlf
