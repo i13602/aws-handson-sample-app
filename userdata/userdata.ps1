@@ -1,7 +1,7 @@
 <powershell>
 # User data for the hands-on web server (Windows Server).
 # Installs IIS, ASP.NET and Git. The application itself is deployed by hand:
-#   git clone --branch v1.0.0 https://github.com/i13602/aws-handson-sample-app.git C:\handson-app
+#   git clone --branch v1.0.1 https://github.com/i13602/aws-handson-sample-app.git C:\handson-app
 #   C:\handson-app\setup.ps1
 # Log: C:\handson-userdata.log
 # Note: keep this file ASCII-only.
@@ -14,16 +14,13 @@ try {
     Install-WindowsFeature -Name Web-Server, Web-Asp-Net45, Web-Mgmt-Console | Out-Null
 
     Write-Output 'Installing Git for Windows...'
+    # The version is pinned so that every learner gets the same Git.
+    # To change it, update both lines below to the same release.
+    # Release list: https://github.com/git-for-windows/git/releases
     [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
-    $fallbackUrl = 'https://github.com/git-for-windows/git/releases/download/v2.47.1.windows.1/Git-2.47.1-64-bit.exe'
-    $installerUrl = $fallbackUrl
-    try {
-        $release = Invoke-RestMethod -Uri 'https://api.github.com/repos/git-for-windows/git/releases/latest' -TimeoutSec 30
-        $asset = $release.assets | Where-Object { $_.name -match '^Git-[0-9.]+-64-bit\.exe$' } | Select-Object -First 1
-        if ($asset) { $installerUrl = $asset.browser_download_url }
-    } catch {
-        Write-Output ('Could not look up the latest release. Using the fallback version. ' + $_.Exception.Message)
-    }
+    $gitVersion = '2.56.0.windows.2'
+    $installerUrl = 'https://github.com/git-for-windows/git/releases/download/v2.56.0.windows.2/Git-2.56.0.2-64-bit.exe'
+    Write-Output ('Git version: ' + $gitVersion)
     Write-Output ('Downloading ' + $installerUrl)
     $installer = Join-Path $env:TEMP 'git-installer.exe'
     $ProgressPreference = 'SilentlyContinue'

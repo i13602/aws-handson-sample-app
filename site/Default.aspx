@@ -9,7 +9,7 @@
     // IIS に最初から入っている機能だけで動く（ビルド不要、追加パッケージ不要）。
     // 注意: ASP.NET 4.8 の標準のコンパイラで動くよう、C# 5 までの書き方にしている。
 
-    const string AppVersion = "1.0.0";
+    const string AppVersion = "1.0.1";
     const string ImdsBase = "http://169.254.169.254/latest/";
 
     protected string HostName = "";

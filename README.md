@@ -41,7 +41,7 @@ userdata/
 サーバーにサインインし、PowerShell を「管理者として実行」で開いて、次を実行する。
 
 ```powershell
-git clone --branch v1.0.0 https://github.com/i13602/aws-handson-sample-app.git C:\handson-app
+git clone --branch v1.0.1 https://github.com/i13602/aws-handson-sample-app.git C:\handson-app
 C:\handson-app\setup.ps1
 ```
 
@@ -96,5 +96,5 @@ C:\handson-app\setup-db.ps1
 
 ## 版
 
-研修では、版を指定して取得する（`--branch v1.0.0`）。研修の途中でアプリを直しても、受講者ごとに中身がずれないようにするため。
+研修では、版を指定して取得する（`--branch v1.0.1`）。研修の途中でアプリを直しても、受講者ごとに中身がずれないようにするため。
 アプリを直したときは、新しい版の番号で印（タグ）を付ける。`Default.aspx` の `AppVersion` も合わせて書き換える。
